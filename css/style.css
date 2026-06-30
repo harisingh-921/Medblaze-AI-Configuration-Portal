@@ -92,9 +92,11 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
-.brand-logo {
-    font-size: 28px;
-    animation: pulse 2s infinite ease-in-out;
+.brand-logo-img {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 4px;
 }
 
 .brand-name {

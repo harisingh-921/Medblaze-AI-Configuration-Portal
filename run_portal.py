@@ -329,7 +329,7 @@ def shutdown():
 
 def main():
     logger.log("=========================================")
-    logger.log("      MEDBLAZE AI PORTAL ORCHESTRATOR    ")
+    logger.log("    MEDBLAZE CONFIGURATION HUB ORCH      ")
     logger.log("=========================================")
     logger.log(f"Portal Path: {PORTAL_DIR}")
     logger.log(f"Workspace Path: {WORKSPACE_ROOT}")
@@ -362,7 +362,7 @@ def main():
     
     # 7. Run HTTP Portal Web Server
     server = HTTPServer(('0.0.0.0', PORTAL_PORT), PortalHTTPRequestHandler)
-    logger.log(f"[PORTAL] Unified Portal running at http://localhost:{PORTAL_PORT}")
+    logger.log(f"[PORTAL] Medblaze Configuration Hub running at http://localhost:{PORTAL_PORT}")
     
     try:
         server.serve_forever()
