@@ -23,7 +23,7 @@
 
             <nav class="sidebar-menu">
                 <div class="menu-label">Main Workspace</div>
-                <a href="#home" class="menu-item active" onclick="switchTab('home')">
+                <a href="#home" class="menu-item active" onclick="switchTab('home', event)">
                     <span class="menu-icon">🏠</span>
                     <span>Home Dashboard</span>
                 </a>
@@ -34,11 +34,11 @@
                 </div>
 
                 <div class="menu-label">Diagnostics</div>
-                <a href="#system" class="menu-item" onclick="switchTab('system')">
+                <a href="#system" class="menu-item" onclick="switchTab('system', event)">
                     <span class="menu-icon">⚙️</span>
                     <span>System Status</span>
                 </a>
-                <a href="#logs" class="menu-item" onclick="switchTab('logs')">
+                <a href="#logs" class="menu-item" onclick="switchTab('logs', event)">
                     <span class="menu-icon">📜</span>
                     <span>Logs Console</span>
                 </a>

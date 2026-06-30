@@ -140,7 +140,16 @@ function toggleSidebar() {
 }
 
 // 6. Navigation Tabs switching
-function switchTab(tabId) {
+function switchTab(tabId, event) {
+    // Check confirmation before leaving current app
+    if (activeTab.startsWith('app-') && activeTab !== tabId) {
+        if (!confirm("Are you sure you want to switch applications? Any unsaved progress will be lost.")) {
+            if (event) event.preventDefault();
+            window.location.hash = activeTab;
+            return;
+        }
+    }
+    
     activeTab = tabId;
     currentAppId = null;
     
@@ -196,6 +205,14 @@ function handleHashRouting() {
 async function launchApplication(appId) {
     const app = applications.find(a => a.id === appId);
     if (!app || app.placeholder) return;
+    
+    // Check confirmation before leaving current app
+    if (activeTab.startsWith('app-') && activeTab !== `app-${appId}`) {
+        if (!confirm("Are you sure you want to switch applications? Any unsaved progress will be lost.")) {
+            window.location.hash = activeTab;
+            return;
+        }
+    }
     
     currentAppId = appId;
     activeTab = `app-${appId}`;
