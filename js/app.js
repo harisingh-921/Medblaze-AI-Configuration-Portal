@@ -59,9 +59,8 @@ function initTheme() {
 function initDevMode() {
     const urlParams = new URLSearchParams(window.location.search);
     const hasDevParam = urlParams.get('dev') === 'true';
-    const isDevCached = localStorage.getItem('devMode') === 'true';
     
-    if (hasDevParam || isDevCached) {
+    if (hasDevParam) {
         setDevMode(true);
     } else {
         setDevMode(false);
