@@ -1,0 +1,18 @@
+[
+  {
+    "id": "user-masters",
+    "name": "User Masters Intelligence",
+    "folder": "user_masters",
+    "port": 8501,
+    "description": "AI-powered user list extraction, field mapping, and smart segregation of new vs existing users.",
+    "icon": "🧠"
+  },
+  {
+    "id": "audit-config",
+    "name": "Audit Configuration Master",
+    "folder": "audit_config",
+    "port": 8502,
+    "description": "Premium validation and data mapping pipeline transforming safety checklists and audit templates.",
+    "icon": "📋"
+  }
+]

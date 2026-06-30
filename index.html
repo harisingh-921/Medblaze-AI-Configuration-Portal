@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medblaze AI Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container" id="appContainer">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-logo">🧠</div>
+                <div class="brand-name">
+                    <span>Medblaze</span>
+                    <span class="brand-subtitle">AI Portal</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <div class="menu-label">Main Workspace</div>
+                <a href="#home" class="menu-item active" onclick="switchTab('home')">
+                    <span class="menu-icon">🏠</span>
+                    <span>Home Dashboard</span>
+                </a>
+
+                <div class="menu-label">Applications</div>
+                <div id="sidebar-app-links">
+                    <!-- Loaded dynamically from config -->
+                </div>
+
+                <div class="menu-label">Diagnostics</div>
+                <a href="#system" class="menu-item" onclick="switchTab('system')">
+                    <span class="menu-icon">⚙️</span>
+                    <span>System Status</span>
+                </a>
+                <a href="#logs" class="menu-item" onclick="switchTab('logs')">
+                    <span class="menu-icon">📜</span>
+                    <span>Logs Console</span>
+                </a>
+            </nav>
+
+            <!-- Sidebar Footer Status info -->
+            <div class="sidebar-status-box">
+                <div class="status-title">System Status Overview</div>
+                <div class="status-grid" id="status-grid-sidebar">
+                    <!-- Dynamic status list -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Topbar Header -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle-btn" onclick="toggleSidebar()" title="Toggle Sidebar">☰</button>
+                    <h2 class="page-title" id="pageTitle">Home Dashboard</h2>
+                </div>
+                <div class="topbar-right">
+                    <!-- Fullscreen Toggle Button -->
+                    <button class="action-btn" id="fullscreenBtn" onclick="toggleFullscreen()" title="Toggle Fullscreen Mode">
+                        <span class="btn-icon">⛶</span>
+                        <span class="btn-text">Full Screen</span>
+                    </button>
+                    <!-- Theme Toggle Button -->
+                    <button class="action-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">
+                        <span id="themeBtnIcon">🌙</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dashboard Content Container -->
+            <div class="content-wrapper" id="contentWrapper">
+                
+                <!-- HOME VIEW -->
+                <section id="view-home" class="view-section active">
+                    <div class="welcome-banner">
+                        <h1>Welcome to Medblaze AI Portal</h1>
+                        <p>Access and manage your intelligence and configuration tools from one centralized hub.</p>
+                    </div>
+
+                    <h3 class="section-title">Available Applications</h3>
+                    <div class="app-grid" id="appCardsGrid">
+                        <!-- Loaded dynamically from config -->
+                    </div>
+                </section>
+
+                <!-- APPLICATION WORKSPACE (IFRAME CONTAINER) -->
+                <section id="view-app-workspace" class="view-section">
+                    <div class="workspace-container">
+                        <!-- Loading Sequence screen -->
+                        <div class="loading-screen" id="appLoadingScreen">
+                            <div class="loading-box">
+                                <div class="loading-icon-spinner" id="appLoadingIcon">🧠</div>
+                                <h2 class="loading-title" id="loadingAppTitle">Starting Application</h2>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar-fill" id="progressBarFill"></div>
+                                </div>
+                                <div class="loading-log" id="loadingLogText">Initializing startup sequence...</div>
+                                <button class="btn btn-outline" style="margin-top: 20px;" onclick="switchTab('home')">Cancel & Go Home</button>
+                            </div>
+                        </div>
+                        <!-- Streamlit application iframe -->
+                        <iframe src="about:blank" id="appIframe" class="app-iframe" allowfullscreen></iframe>
+                    </div>
+                </section>
+
+                <!-- SYSTEM STATUS VIEW -->
+                <section id="view-system" class="view-section">
+                    <div class="card card-wide">
+                        <div class="card-header">
+                            <h3 class="card-title">System Metrics & Configurations</h3>
+                            <span class="badge badge-success">Live</span>
+                        </div>
+                        <div class="system-metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-label">CPU Usage</div>
+                                <div class="metric-value" id="sys-cpu">0%</div>
+                                <div class="progress-bar-container mini"><div class="progress-bar-fill" id="cpuBar" style="width: 0%"></div></div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-label">Memory Usage</div>
+                                <div class="metric-value" id="sys-mem">0%</div>
+                                <div class="progress-bar-container mini"><div class="progress-bar-fill" id="memBar" style="width: 0%"></div></div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-label">Python Version</div>
+                                <div class="metric-value text-sm" id="sys-pyver">Loading...</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-label">Portal Port</div>
+                                <div class="metric-value" id="sys-port">8500</div>
+                            </div>
+                        </div>
+
+                        <h3 class="section-title" style="margin-top: 30px;">Process Status & Port Mappings</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Application</th>
+                                    <th>Port</th>
+                                    <th>Folder Path</th>
+                                    <th>PID</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="system-process-table">
+                                <!-- Loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- LOGS CONSOLE VIEW -->
+                <section id="view-logs" class="view-section">
+                    <div class="card card-wide flex-column-layout">
+                        <div class="card-header">
+                            <h3 class="card-title">Orchestrator Terminal Output</h3>
+                            <button class="btn btn-sm btn-outline" onclick="clearConsoleLog()">Clear Screen</button>
+                        </div>
+                        <div class="log-console-container">
+                            <pre class="log-console" id="logConsoleOutput">Connecting to orchestrator logs...</pre>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-left">
+                    <span>Workspace: <strong>C:\Users\USER\OneDrive\Documents\Workspace</strong></span>
+                </div>
+                <div class="footer-right">
+                    <span>Powering <strong>Medblaze AI Dashboard</strong> v2.0.0</span>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>
