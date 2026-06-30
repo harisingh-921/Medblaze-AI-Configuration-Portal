@@ -65,7 +65,7 @@ body {
 
 /* Sidebar Styling */
 .sidebar {
-    width: 280px;
+    width: 320px;
     background-color: var(--bg-secondary);
     border-right: 1px solid var(--border-color);
     display: flex;
@@ -79,7 +79,7 @@ body {
 
 .sidebar.collapsed {
     width: 0;
-    transform: translateX(-280px);
+    transform: translateX(-320px);
     overflow: hidden;
     border-right: none;
 }
@@ -93,7 +93,7 @@ body {
 }
 
 .brand-logo-img {
-    height: 32px;
+    height: 42px;
     width: auto;
     object-fit: contain;
     border-radius: 4px;
@@ -786,7 +786,7 @@ body {
     
     .sidebar.active {
         transform: translateX(0);
-        width: 280px;
+        width: 320px;
     }
     
     .sidebar.collapsed {
