@@ -85,34 +85,35 @@ body {
 }
 
 .sidebar-brand {
-    padding: 24px;
+    padding: 28px 24px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
     border-bottom: 1px solid var(--border-color);
 }
 
 .brand-logo-img {
-    height: 42px;
+    height: 52px;
     width: auto;
     object-fit: contain;
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
 .brand-name {
     display: flex;
     flex-direction: column;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 23px;
     letter-spacing: -0.5px;
+    line-height: 1.15;
 }
 
 .brand-subtitle {
-    font-size: 11px;
+    font-size: 12.5px;
     color: var(--text-muted);
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 }
 
 .sidebar-menu {
