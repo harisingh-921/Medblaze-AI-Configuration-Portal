@@ -794,3 +794,16 @@ body {
         transform: translateX(-100%);
     }
 }
+
+/* Developer Mode UI Visibility Toggles */
+.dev-only-ui {
+    display: none !important;
+}
+
+body.dev-mode-active .dev-only-ui {
+    display: block !important;
+}
+
+body.dev-mode-active div.sidebar-status-box.dev-only-ui {
+    display: block !important;
+}

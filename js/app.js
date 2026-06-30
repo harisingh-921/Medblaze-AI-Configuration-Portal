@@ -26,9 +26,13 @@ const loadingLogText = document.getElementById('loadingLogText');
 const themeToggleBtn = document.getElementById('themeToggleBtn');
 const themeBtnIcon = document.getElementById('themeBtnIcon');
 
+// Dev mode state
+let devModeActive = false;
+
 // 1. Initialize application
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
+    initDevMode();
     loadConfig();
     
     // Start health polling
@@ -39,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check url hash for deep linking
     handleHashRouting();
     window.addEventListener('hashchange', handleHashRouting);
+    
+    // Register developer keyboard listener
+    setupDevKeyboardListener();
 });
 
 // 2. Theme management
@@ -46,6 +53,48 @@ function initTheme() {
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
+}
+
+// 2.1 Developer Mode management
+function initDevMode() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasDevParam = urlParams.get('dev') === 'true';
+    const isDevCached = localStorage.getItem('devMode') === 'true';
+    
+    if (hasDevParam || isDevCached) {
+        setDevMode(true);
+    } else {
+        setDevMode(false);
+    }
+}
+
+function setDevMode(active) {
+    devModeActive = active;
+    if (active) {
+        document.body.classList.add('dev-mode-active');
+        localStorage.setItem('devMode', 'true');
+        console.log('[PORTAL] Developer Mode enabled.');
+    } else {
+        document.body.classList.remove('dev-mode-active');
+        localStorage.setItem('devMode', 'false');
+        console.log('[PORTAL] Developer Mode disabled.');
+        
+        // If they are on a dev tab (system/logs) and we disable dev mode, route them back to home
+        if (activeTab === 'system' || activeTab === 'logs') {
+            switchTab('home');
+        }
+    }
+}
+
+function setupDevKeyboardListener() {
+    document.addEventListener('keydown', (e) => {
+        // Ctrl + Shift + D
+        if (e.ctrlKey && e.shiftKey && e.code === 'KeyD') {
+            e.preventDefault();
+            setDevMode(!devModeActive);
+            appendConsoleLog(`[PORTAL] Developer Mode ${devModeActive ? 'Enabled' : 'Disabled'}`);
+        }
+    });
 }
 
 function toggleTheme() {

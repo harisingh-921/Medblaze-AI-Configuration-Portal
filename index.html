@@ -33,19 +33,21 @@
                     <!-- Loaded dynamically from config -->
                 </div>
 
-                <div class="menu-label">Diagnostics</div>
-                <a href="#system" class="menu-item" onclick="switchTab('system', event)">
-                    <span class="menu-icon">⚙️</span>
-                    <span>System Status</span>
-                </a>
-                <a href="#logs" class="menu-item" onclick="switchTab('logs', event)">
-                    <span class="menu-icon">📜</span>
-                    <span>Logs Console</span>
-                </a>
+                <div class="dev-only-ui">
+                    <div class="menu-label">Diagnostics</div>
+                    <a href="#system" class="menu-item" onclick="switchTab('system', event)">
+                        <span class="menu-icon">⚙️</span>
+                        <span>System Status</span>
+                    </a>
+                    <a href="#logs" class="menu-item" onclick="switchTab('logs', event)">
+                        <span class="menu-icon">📜</span>
+                        <span>Logs Console</span>
+                    </a>
+                </div>
             </nav>
 
             <!-- Sidebar Footer Status info -->
-            <div class="sidebar-status-box">
+            <div class="sidebar-status-box dev-only-ui">
                 <div class="status-title">System Status Overview</div>
                 <div class="status-grid" id="status-grid-sidebar">
                     <!-- Dynamic status list -->
