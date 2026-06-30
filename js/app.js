@@ -161,8 +161,13 @@ function renderHomeCards() {
             
         // Button
         const btnHTML = app.placeholder
-            ? `<button class="btn btn-outline btn-sm" disabled>Coming Soon</button>`
-            : `<button class="btn btn-primary btn-sm" onclick="launchApplication('${app.id}')">Open Application →</button>`;
+            ? `<button class="btn-launch" disabled>Coming Soon</button>`
+            : `<button class="btn-launch" onclick="launchApplication('${app.id}')">🚀 Open Application</button>`;
+        
+        // Port badge (only for real apps)
+        const portBadge = app.port && !app.placeholder
+            ? `<div class="app-card-port">⚡ Port ${app.port}</div>`
+            : '';
 
         card.innerHTML = `
             <div class="app-card-header">
@@ -172,6 +177,7 @@ function renderHomeCards() {
             <div class="app-card-body">
                 <h4 class="app-card-title">${app.name}</h4>
                 <p class="app-card-desc">${app.description}</p>
+                ${portBadge}
             </div>
             <div class="app-card-footer">
                 ${btnHTML}
