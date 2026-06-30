@@ -733,21 +733,28 @@ body {
 
 /* Floating Fullscreen Exit Button */
 #fullscreenExitBtn {
-    display: none;
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 10000;
-    opacity: 0.1;
-    transition: opacity var(--transition-fast);
+    z-index: 99999;
+    background-color: var(--danger);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 13.5px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
 }
 
 #fullscreenExitBtn:hover {
-    opacity: 1.0;
-}
-
-.app-container.fullscreen #fullscreenExitBtn {
-    display: flex;
+    background-color: #dc2626;
+    transform: scale(1.05);
 }
 
 /* Keyframe Animations */
