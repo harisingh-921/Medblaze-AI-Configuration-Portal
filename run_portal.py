@@ -74,7 +74,12 @@ class StreamlitSubprocess:
         logger.log(f"[PORTAL] Launching {self.name} on port {self.port} (CWD: {self.folder})...")
         
         # Build command using parent python environment execution path
-        cmd = [sys.executable, "-m", "streamlit", "run", "app.py", f"--server.port={self.port}", "--server.address=localhost"]
+        cmd = [
+            sys.executable, "-m", "streamlit", "run", "app.py",
+            f"--server.port={self.port}",
+            "--server.address=localhost",
+            "--server.headless=true"
+        ]
         
         try:
             self.process = subprocess.Popen(
